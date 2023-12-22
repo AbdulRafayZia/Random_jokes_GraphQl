@@ -23,7 +23,7 @@ func GetRandomJoke() *models.Joke {
 
 	for rows.Next() {
 		var joke models.Joke
-		if err != nil {
+		if err := rows.Scan(&joke.Id, &joke.Joke); err != nil {
 			log.Fatal(err)
 		}
 		jokes = append(jokes, joke)
